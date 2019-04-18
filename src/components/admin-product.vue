@@ -10,31 +10,31 @@
         <table class="table table-striped table-sm mt-1">
             <thead>
                 <tr>
-                    <th class="pl-4">PICTURE</th>
-                    <th>ORIGN PRICE</th>
-                    <th>PRICE</th>
-                    <th>QUANTITY</th>
-                    <th>CATEGORY</th>
-                    <th width="20%">TITLE</th>
+                    <th class="d-none d-md-table-cell">PICTURE</th>
+                    <th class="d-none d-lg-table-cell">ORIGN PRICE</th>
+                    <th class="price">PRICE</th>
+                    <th class="d-none d-md-table-cell">QUANTITY</th>
+                    <th class="d-none d-md-table-cell">CATEGORY</th>
+                    <th>TITLE</th>
                     <th>ENABLE</th>
-                    <th width="150" class="text-center">EDIT</th>
+                    <th class="edit text-center">EDIT</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="(item) in products"  :key="item.id">
-                    <td class="pl-3"><img :src="item.imageUrl" alt="" class="icon-img"></td>
-                    <td>{{ item.origin_price | currencyFilter }}</td>
+                    <td class="d-none d-md-table-cell"><img :src="item.imageUrl" alt="" class="icon-img"></td>
+                    <td class="d-none d-lg-table-cell">{{ item.origin_price | currencyFilter }}</td>
                     <td>{{ item.price | currencyFilter }}</td>
-                    <td>{{ item.quantity }}</td>
-                    <td>{{ item.category }}</td>
+                    <td class="d-none d-md-table-cell">{{ item.quantity }}</td>
+                    <td class="d-none d-md-table-cell">{{ item.category }}</td>
                     <td>{{ item.title }}</td>
                     <td>
                         <span v-if="item.is_enabled" class="text-success">enable</span>
                         <span v-else class="text-danger">unable</span>
                     </td>
-                    <td class="pr-3">
-                        <button class="btn btn-outline-primary" @click="editProduct(item)">edit</button>
-                        <button class="btn btn-outline-danger" @click="openDelModal(item)">delete</button>
+                    <td class="d-flex flex-column d-md-table-cell">
+                        <button class="btn btn-outline-primary my-1" @click="editProduct(item)">edit</button>
+                        <button class="btn btn-outline-danger my-1" @click="openDelModal(item)">delete</button>
                     </td>
                 </tr>
             </tbody>
@@ -281,4 +281,13 @@ td{
 .icon-img{
     max-height: 60px;
 }
+.price {
+    min-width: 70px
+}
+@media(min-width: 768px) {
+    .edit {
+        width: 150px;
+    }
+}
+
 </style>

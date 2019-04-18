@@ -5,7 +5,7 @@
   <div class="container-fluid">
     <div class="row">
       <Sidebar/>
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <main role="main" class="ml-auto mr-lg-3 col-lg-10 px-4">
         <router-view></router-view>
       </main>
     </div>
@@ -32,4 +32,8 @@ export default {
 };
 </script>
 <style scoped>
+.container-fluid {
+  width: 100vw;
+  overflow: hidden;
+}
 </style>

@@ -6,29 +6,31 @@
     <table class="table table-striped table-sm mt-4">
         <thead>
             <tr>
-                <th class="pl-4">Time</th>
-                <th width="20%">Email</th>
-                <th width="25%">Items</th>
+                <th class="d-none d-md-table-cell pl-4">Time</th>
+                <th class="text-center">Name</th>
+                <th class="d-none d-md-table-cell">Email</th>
+                <th class="d-none d-md-table-cell">Items</th>
                 <th class="text-right">Amount</th>
-                <th class="pl-4">Situation</th>
+                <th class="text-center">Situation</th>
                 <th class="text-center">Detail</th>
             </tr>
         </thead>
         <tbody>
             <tr v-for="(item, index) in orders" v-if="item.is_paid==situa || situa==-1" :key="item.id">
-                <td class="pl-3" width="160px">{{ item.create_at | momentFilter }}</td>
-                <td>{{ item.user.email }}</td>
-                <td >
+                <td class="time d-none d-md-table-cell pl-2">{{ item.create_at | momentFilter }}</td>
+                <td class="pl-2">{{ item.user.name }}</td>
+                <td class="email d-none d-md-table-cell">{{ item.user.email }}</td>
+                <td class="d-none d-md-table-cell">
                     <div v-for="product in item.products">{{ product.product.title }} * {{ product.qty }}</div>
                 </td>
                 <td class="text-right">{{ item.total | currencyFilter }}</td>
-                <td class="pl-4">
+                <td class="text-center">
                     <span class="text-danger" v-if="item.is_paid==0">尚未付款</span>
                     <span class="text-warning" v-else-if="item.is_paid==1">已付款</span>
                     <span class="text-dark" v-else-if="item.is_paid==2">已取消</span>
                     <span class="text-success" v-else>已完成</span>
                 </td>
-                <td width="65px" class="pr-3">
+                <td width="65px" class="pr-1">
                     <button class="btn btn-outline-primary" @click="editOrder(item, index)">detail</button>
                 </td>
             </tr>
@@ -55,12 +57,13 @@
                                     <h6 class="d-inline-block text-primary font-weight-bold mr-4">訂單資訊</h6>
                                     <select name="" class="form-control-sm text-left align-middle mr-1"
                                     v-model="modifyOrder.is_paid">
+                                        <option selected disabled>請選擇訂單狀態</option>
                                         <option value="0">尚未付款</option>
                                         <option value="1">已付款</option>
                                         <option value="2">已取消</option>
                                         <option value="3">已完成</option>
                                     </select>
-                                    <button class="btn btn-sm btn-outline-primary align-middle" @click="updateOrder">
+                                    <button class="btn btn-sm btn-outline-primary align-middle mt-2 mt-md-0" @click="updateOrder">
                                         編輯<i class="fas fa-spinner fa-spin" v-if="updateLoading"></i>
                                     </button>                               
                                 </header>
@@ -165,8 +168,6 @@ export default {
             this.situa= num;
         },
     },
-    computed:{
-    },
     created() {
         this.getOrders();
     },
@@ -217,5 +218,14 @@ td div{
     background: white;
     border: 1px solid #eee;
     border-bottom: 1px solid white;
+}
+
+@media(min-width: 768px) {
+    .time {
+        min-width: 140px
+    }
+    .email {
+        min-width: 150px
+    }
 }
 </style>

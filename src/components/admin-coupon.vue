@@ -10,27 +10,27 @@
         <table class="table table-striped table-sm mt-1">
             <thead>
                 <tr>
-                    <th class="pl-4">TITLE</th>
-                    <th>PERCENT</th>
-                    <th>DATE</th>
-                    <th>CODE</th>
-                    <th>ENABLE</th>
-                    <th width="150" class="text-center">EDIT</th>
+                    <th class="title d-none d-md-table-cell pl-2">TITLE</th>
+                    <th class="text-right">PERCENT</th>
+                    <th class="date text-center">DATE</th>
+                    <th class="d-none d-md-table-cell">CODE</th>
+                    <th class="text-center">ENABLE</th>
+                    <th class="edit text-center">EDIT</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="item in coupons"  :key="item.id">
-                    <td class="pl-3">{{ item.title }}</td>
-                    <td>{{ item.percent }}</td>
-                    <td>{{ item.due_date | dateFilter }}</td>
-                    <td>{{ item.code }}</td>
-                    <td>
+                    <td class="d-none d-md-table-cell">{{ item.title }}</td>
+                    <td class="text-right pr-3">{{ item.percent }}</td>
+                    <td class="text-center">{{ item.due_date | dateFilter }}</td>
+                    <td class="d-none d-md-table-cell">{{ item.code }}</td>
+                    <td class="text-center">
                         <span class="text-success" v-if="item.is_enabled">enable</span>
                         <span class="text-danger" v-else>unable</span>
                     </td>
-                    <td class="pr-3">
-                        <button class="btn btn-outline-primary" @click="editCoupon(item)">edit</button>
-                        <button class="btn btn-outline-danger" @click="openDelModal(item)">delete</button>
+                    <td class="d-flex flex-column d-md-table-cell">
+                        <button class="btn btn-outline-primary my-1" @click="editCoupon(item)">edit</button>
+                        <button class="btn btn-outline-danger my-1" @click="openDelModal(item)">delete</button>
                     </td>
                 </tr>
             </tbody>
@@ -235,13 +235,25 @@ export default {
 </script>
 
 <style scoped>
-td{
+td {
     vertical-align: middle
 }
-.btn{
+.btn {
     line-height: 1
 }
-.icon-img{
+.icon-img {
     max-height: 60px;
 }
+.title {
+    min-width: 80px
+}
+.date {
+    min-width: 90px
+}
+@media(min-width: 768px){
+    .edit {
+        width: 140px
+    }
+}
+
 </style>

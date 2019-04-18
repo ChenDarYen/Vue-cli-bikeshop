@@ -1,12 +1,41 @@
 <template>
-<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-    <router-link class="navbar-brand col-sm-3 col-md-2 mr-0" to="main">Company name</router-link>
-    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-    <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
+<nav class="navbar navbar-dark navbar-expand-sm fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <router-link class="navbar-brand text-center px-2" to="main">BIKE SHOP</router-link>
+    <button class="navbar-toggler mr-2" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <ul class="navbar-nav d-none d-sm-flex d-lg-none">
+      <li class="nav-item text-nowrap">
+          <router-link class="nav-link" :class="{'active': $route.name == 'Product'}" to="/admin/product">Product</router-link>
+      </li>
+      <li class="nav-item text-nowrap">
+          <router-link class="nav-link" :class="{'active': $route.name == 'Order'}" to="/admin">Order</router-link>
+      </li>
+      <li class="nav-item text-nowrap">
+          <router-link class="nav-link" :class="{'active': $route.name == 'Coupon'}" to="/admin/coupon">Coupon</router-link>
+      </li>
+    </ul>    
+    <div id="navbarCollapse" class="collapse navbar-collapse px-3 px-sm-0">
+      <form class="form-inline py-2 ml-auto row">
+        <input class="form-control form-control-dark col-8 mr-2" type="text" placeholder="Search" aria-label="Search">
+        <button type="submit" class="btn btn-outline-primary mr-2 col-3">Search</button>
+      </form>
+      <ul class="navbar-nav pb-2 pb-sm-0">
+        <li class="nav-item text-nowrap d-sm-none">
+            <router-link class="nav-link" to="/admin/product">Product</router-link>
+        </li>
+        <li class="nav-item text-nowrap d-sm-none">
+            <router-link class="nav-link" to="/admin">Order</router-link>
+        </li>
+        <li class="nav-item text-nowrap d-sm-none">
+            <router-link class="nav-link" to="/admin/coupon">Coupon</router-link>
+        </li>
+        <li class="nav-item text-nowrap px-0 px-md-3">
             <a class="nav-link" href="#" @click.prevent="logout">Sign out</a>
         </li>
-    </ul>
+      </ul>    
+    </div>
+
 </nav>
 </template>
 
