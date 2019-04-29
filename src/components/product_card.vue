@@ -52,14 +52,12 @@ export default {
 <style scoped>
 .product-card {
     display: inline-block;
-    width: 33%;
-    max-width: 300px;
 }
 .product-card-picture {
     height: 150px;
-    background-size: auto 100%;
+    background-size: 100% auto;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: bottom center;
 }
 .product-card-title {
     font-weight: 900;

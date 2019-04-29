@@ -3,11 +3,13 @@
   <Navbar :cart="cart"/>
   <Alert/>
   <router-view class="main"></router-view>
+  <Footer class="mt-4"/>
 </div>
 </template>
 
 <script>
 import Navbar from '@/components/main-navbar';
+import Footer from '@/components/main-footer';
 import Alert from '@/components/alert';
 
 export default {
@@ -28,23 +30,10 @@ export default {
         })
     },
   },
-  created() {
-    this.getCart();
-  },
   components: {
     Navbar,
+    Footer,
     Alert,
   },
 }
 </script>
-
-<style scoped>
-.main {
-  margin-top: 48px;
-}
-@media (min-width: 768px) {
-    .main {
-        margin-top: 80px;
-    }
-}
-</style>

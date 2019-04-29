@@ -1,6 +1,6 @@
 <template>
     <div class="showcase" :style="options.styles">
-        <div>
+        <div class="content">
             <span>{{ options.subtitle }}</span>
             <h3 class="mt-1">{{ options.title }}</h3>
             <p class="mt-2">{{ options.content }}</p>
@@ -19,10 +19,10 @@ export default {
             content: '',
             direction: '',
             styles: {
-                backgroundImage: '',
                 height: '',
                 width: '',
                 color: '',
+                backgroundImage: '',
             },
         }
     },
@@ -34,27 +34,38 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .showcase {
-    background-position: center;
+    height: 350px;
     background-repeat: no-repeat;
     background-size: 100% auto;
-    background-position: center center;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    margin: 5px;
+    position: relative;
     text-align: center;
     display: block;
-    height: 300px;
+    overflow: hidden;
+    div {
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+.bgImg {
     width: 100%;
+    filter: blur(1px);
+    img {
+    width: 100%;
+    }
 }
-.showcase div{
-    display: inline-block;
-    vertical-align: middle;
-}
-.showcase::before{
-    content: '';
-    width: 0;
-    height: 100%;
-    display: inline-block;
-    vertical-align: middle;
+.content {
+    height: 93px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0
 }
 h3 {
     font-weight: 1000;

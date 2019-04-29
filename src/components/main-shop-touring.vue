@@ -4,7 +4,7 @@
             <Loading :active.sync="isLoading" ></Loading>
         </div>
         <div class="mt-4">
-            <ProductCard 
+            <ProductCard class="col-12 col-sm-6 col-lg-4"
             v-for="item in products" v-if="item.is_enabled && item.category==category" :data="item" :key="item.id"/>
         </div>
         <Pagination 

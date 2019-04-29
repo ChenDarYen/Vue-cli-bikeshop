@@ -3,25 +3,21 @@
     <div class="cart" v-if="isCart">
         <div class="container-fluid" v-if="cart.total!=0">
             <div class="row">
-                <div class="col">
-                    <table class="item-table">
-                        <tbody>
-                            <tr v-for="item in cart.carts" :ket="item.id">
-                                <td><div class="item-image" :style="{'backgroundImage': `url(${item.product.imageUrl})`}"></div></td>
-                                <td class="item-title">{{ item.product.title }}</td>
-                                <td class="item-quantity pl-4">*{{ item.qty }}</td>
-                                <td class="item-price text-right pl-5">{{ item.product.price | currencyFilter }}</td>
-                                <td class="pl-3">
-                                    <button type="button" class="btn btn-outline-danger btn-sm"
-                                    @click="removeFromCart(item.id)">
-                                        <i class="far fa-trash-alt"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="col-12 col-sm-6 col-lg-7">
+                    <div class="item d-flex align-items-center mb-2 row" v-for="item in cart.carts" :key="item.id">
+                        <div class="item-image ml-3 ml-sm-auto" :style="{'backgroundImage': `url(${item.product.imageUrl})`}"></div>
+                        <div class="item-title ml-2">{{ item.product.title }}</div>
+                        <div class="item-quantity">*{{ item.qty }}</div>
+                        <div class="item-price ml-2">{{ item.product.price | currencyFilter }}</div>
+                        <div class="col-1 ml-auto">
+                            <button type="button" class="btn btn-outline-danger btn-sm"
+                            @click="removeFromCart(item.id)">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="col ml-5 frame">
+                <div class="col-12 col-sm-6 col-lg-5 mt-5 mt-sm-0 frame">
                     <div class="frame-header">
                         訂單摘要
                     </div>
@@ -66,8 +62,7 @@
             <table class="detail-table">
                 <tbody>
                     <tr v-for="item in cart.carts" :key="item.id">
-                        <td></td>
-                        <td class="text-center">{{ item.product.title }}</td>
+                        <td colspan="2" class="text-right p-0">{{ item.product.title }}</td>
                         <td>*{{ item.qty }}</td>
                         <td class="text-right">{{ item.product.price | currencyFilter }}</td>
                     </tr>
@@ -218,28 +213,24 @@ export default {
 </script>
 
 <style scoped>
-.cart {
-    padding: 5% 10%;
+.cart, .inform {
+    width: 100vw;
+    margin-top: 90px; 
 }
-.item-table {
-    width: 100%
+.item {
+    width: 100%;
 }
 .item-image {
     background-size: auto 100%;
-    background-position: center center;
-    width: 90px;
-    height: 90px;
-    margin: 5px 20px;
+    background-position: bottom center;
+    width: 80px;
+    height: 80px;
 }
-.item-title {
-    font-size: 22px;
-    min-width: 130px;
+.item-title, .item-price {
+    font-size: 18px;
 }
 .item-quantity {
     font-size: 16px
-}
-.item-price {
-    font-size: 24px
 }
 .frame {
     max-width: 380px;
@@ -273,10 +264,11 @@ export default {
     font-size: 24px;
 }
 .inform {
-    padding: 5% 20%;
+    padding: 5% 10%;
 }
 .detail-table {
     font-size: 18px;
+    min-width: 50%
 }
 .detail-table td {
     padding: 0 10px

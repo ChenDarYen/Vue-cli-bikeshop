@@ -22,9 +22,10 @@ export default {
 
 <style scoped>
 .banner {
+    background-color: #000000;
     background-repeat: no-repeat;
-    background-size: 100% auto;
-    background-position: center center;
+    background-size: auto 100%;
+    background-position: bottom center;
     height: 400px;
     width: 100%;
 }

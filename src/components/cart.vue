@@ -32,7 +32,11 @@ export default {
 </script>
 
 <style scoped>
+.cart {
+    margin: auto 0 0;
+}
 .fas {
+    margin: 0;
     font-size: 24px;
     color: black;
     position: relative;

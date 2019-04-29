@@ -3,30 +3,37 @@
     <div class="vld-parent">
         <Loading :active.sync="isLoading" ></Loading>
     </div>
-    <div class="row product-header">
-        <div class="col">
-            <div class="product-title mb-2">{{ product.title }}</div>
-            <span class="product-originprice mr-2" 
-            v-if="product.origin_price !=  product.price">{{ product.origin_price | currencyFilter }}</span>
-            <span class="product-price">{{ product.price | currencyFilter }}</span>
-        </div>
-        <div class="col text-center vertical-center-father">
-            數量：
-            <div class="d-inline-block">
-                <select name="quantity" class="text-left product-form vertical-center-son" 
-                v-model="form.qty" v-validate="'min_value:1'" :class="{'border-danger':errors.has('quantity')}">
-                    <option v-for="num in Number(optionNum)" :value="num" :key="num">{{ num }}</option>
-                </select>
-                <span class="text-danger" v-if="errors.has('quantity')">請選擇數量</span>
+    <div class="product-header row">
+        <div class="text-center col-12 col-lg-4 ml-auto">
+            <div class="product-title">{{ product.title }}</div>
+            <div class="mb-4">
+                <span class="product-originprice" 
+                v-if="product.origin_price !=  product.price">{{ product.origin_price | currencyFilter }}</span>
+                <span class="product-price">{{ product.price | currencyFilter }}</span>
             </div>
         </div>
-        <div class="col text-right vertical-center-father">
-            <button type="button" class="btn btn-outline-primary btn-sm ml-auto vertical-center-son"
-            @click="addToCart(product.id, form.qty)">
-                    <i class="fas fa-spinner fa-spin" 
-                    v-if="fileUpLoading"></i>
-                    加到購物車
-            </button>
+        <div class="col-12 col-lg-7 mt-lg-4">
+            <div class="row">
+                <div class="form-group row"
+                :class="{'col-7': !errors.has('quantity'), 'col-lg-3': !errors.has('quantity'),
+                'col-8': errors.has('quantity'), 'col-lg-5': errors.has('quantity')}">
+                    <label for="quantity" class="ml-auto text-right">數量：</label>
+                    <select name="quantity" id="quantity" class="col-3 col-lg-6 px-2" 
+                    v-model="form.qty" v-validate="'min_value:1'" :class="{'border-danger':errors.has('quantity')}">
+                        <option v-for="num in Number(optionNum)" :value="num" :key="num">{{ num }}</option>
+                    </select>
+                    <span class="text-danger text-left px-1" v-if="errors.has('quantity')">請選擇數量</span>
+                </div>
+                <div class="text-left"
+                :class="{'col-5': !errors.has('quantity'), 'col-4': errors.has('quantity'), 'pl-2': errors.has('quantity')}">
+                    <button type="button" class="btn btn-outline-primary btn-sm"
+                    @click="addToCart(product.id, form.qty)">
+                            <i class="fas fa-spinner fa-spin" 
+                            v-if="fileUpLoading"></i>
+                            加到購物車
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row product-body">
@@ -103,8 +110,12 @@ export default {
 </script>
 
 <style scoped>
-.product-header {
-    padding: 2% 15% 5%;
+.product-header label, span {
+    line-height: 31px;
+    margin-bottom: 0;
+}
+.product-header select, button {
+    height: 31px;
 }
 .product-body {
     padding: 0 10%;
@@ -126,21 +137,5 @@ export default {
 }
 .product-price {
     font-size: 24px;
-}
-.product-form {
-    min-width: 20%; 
-}
-.hidden-content {
-    height: 200px;
-    overflow: hidden;
-    position: relative;
-}
-.containt-showmore {
-    background: white;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 40px;
-    text-align: center;
 }
 </style>
